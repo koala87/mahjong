@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}麻将记分宝{% endblock %}</title>
+    <!-- Bootstrap -->
+    <link href="/static/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
+    <!-- Data tables -->
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/dataTables.css">
+    <style type="text/css">
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+        th {
+            background-color: #ccc;
+        }
+        td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+    {% block css %}{% endblock %}
+</head>
+<body>
+{% include 'base/nav.html' %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-3 col-md-3 sidebar">
+            {% include 'base/sidebar.html' %}
+        </div>
+        <div class="col-xs-9 col-sm-offset-3 col-md-9 col-md-offset-2 main">
+            <div class="container theme-showcase" role="main">
+                {% block content %} content {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'base/foot.html' %}
+<!--引入JavaScript-->
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" language="javascript" src="/static/dist/js/dataTables.js"></script>
+<script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+{% block script %}{% endblock %}
+</body>
+</html>
+

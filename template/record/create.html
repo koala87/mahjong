@@ -1,0 +1,52 @@
+{% extends "base/base.html" %}
+
+{% block title %}新建比赛{% endblock %}
+
+{% block content %}
+    <h1 class="page-header">新建比赛</h1>
+    <form method="POST" action="/record/create">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>比赛名称</label>
+            <input type="text" class="form-control" placeholder="雀巢杯" value="雀巢杯" name="name">
+        </div>
+        <div class="form-group">
+            <label>比赛圈数</label>
+            <select class="form-control" name="circle">
+                <option>1</option>
+                <option>2</option>
+                <option>4</option>
+                <option selected="selected">6</option>
+                <option>8</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>最小分数</label>
+            <select class="form-control" name="base">
+                <option>1</option>
+                <option>2</option>
+                <option>5</option>
+                <option>10</option>
+                <option selected="selected">20</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>玩家1</label>
+            <input type="text" class="form-control" name="member1" value="小徐">
+        </div>
+        <div class="form-group">
+            <label>玩家2</label>
+            <input type="text" class="form-control" name="member2" value="大师">
+        </div>
+        <div class="form-group">
+            <label>玩家3</label>
+            <input type="text" class="form-control" name="member3" value="小E">
+        </div>
+        <div class="form-group">
+            <label>选手4</label>
+            <input type="text" class="form-control" name="member4" value="大王">
+        </div>
+        <br>
+        <div style="text-align:center"><button id="add" type="submit" class="btn btn-primary">提交</button></div>
+    </form>
+{% endblock %}

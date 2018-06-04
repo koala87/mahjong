@@ -1,0 +1,38 @@
+<form id="recordForm" method="POST" action="/record/record/1">
+    {% csrf_token %}
+    <div style="text-align:center">
+        <h3>第3圈 第9把</h3>
+        <table class="table table-bordered" id="myTable">
+            <thead>
+            <tr>
+                <th>玩家</th>
+                <th>总分</th>
+                <th>当前分数</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ games.0.member1 }}</td>
+                <td>{{ games.0.score1 }}</td>
+                <td><input type="text" class="form-control" name="score1" value="0"></td>
+            </tr>
+            <tr>
+                <td>{{ games.0.member2 }}</td>
+                <td>{{ games.0.score2 }}</td>
+                <td><input type="text" class="form-control" name="score2" value="0"></td>
+            </tr>
+            <tr>
+                <td>{{ games.0.member3 }}</td>
+                <td>{{ games.0.score3 }}</td>
+                <td><input type="text" class="form-control" name="score3" value="0"></td>
+            </tr>
+            <tr>
+                <td>{{ games.0.member4 }}</td>
+                <td>{{ games.0.score4 }}</td>
+                <td><input type="text" class="form-control" name="score4" value="0"></td>
+            </tr>
+        </table>
+        <br>
+        <button type="submit" class="btn btn-primary">提交</button>
+    </div>
+</form>

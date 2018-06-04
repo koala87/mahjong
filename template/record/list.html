@@ -1,0 +1,45 @@
+{% extends "base/base.html" %}
+
+{% block title %}比赛历史{% endblock %}
+
+{% block content %}
+    <h1 class="page-header">比赛历史</h1>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#tab1" role="tab" data-toggle="tab"><strong>概况</strong></a>
+        </li>
+        <li role="presentation">
+            <a href="#tab2" role="tab" data-toggle="tab"><strong>统计</strong></a>
+        </li>
+        <li role="presentation">
+            <a href="#tab3" role="tab" data-toggle="tab"><strong>记分</strong></a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab1">
+            {% include "record/list_tap1.html" %}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab2">
+            <p>tab2 content</p>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab3">
+            <p>tab3 content</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                'order' : [1,'desc'],
+                "aoColumnDefs": [{"bSortable": false, "aTargets": [6]}],
+                'bFilter': false,
+                'bLengthChange': false,
+                'bSort': true,
+                "sInfoEmpty": "No entries to show",
+                "pagingType": "simple_numbers"
+            });
+        });
+    </script>
+{% endblock %}

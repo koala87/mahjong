@@ -1,0 +1,73 @@
+{% extends "base/base.html" %}
+
+{% block title %}比赛详情{% endblock %}
+
+{% block content %}
+    <h1 class="page-header">比赛记分</h1>
+    <div class="form-group">
+        <label>选择比赛</label>
+        <select id="gameSelect" class="form-control" onchange="loadScore(this.options[this.options.selectedIndex].value)">
+            {% for i in games %}
+                {% ifequal i.id game_id %}
+                    <option value="{{ i.id }}" selected = "selected">{{ i.name }}</option>
+                {% else %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endifequal %}
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+
+    <ul class="nav nav-tabs" id="myTab">
+        <li role="presentation" class="active">
+            <a href="#tab1" data-toggle="tab"><strong>记分</strong></a>
+        </li>
+        <li role="presentation">
+            <a href="#tab2" data-toggle="tab"><strong>详情</strong></a>
+        </li>
+        <li role="presentation">
+            <a href="#tab3" data-toggle="tab"><strong>统计</strong></a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab1">
+            {% include "record/record_tap1.html" %}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab2">
+            <p>tab2 content</p>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab3">
+            <p>tab3 content</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        function loadScore(game_id) {
+            $("#recordForm").attr("action","/record/record/" + $("#gameSelect").val());
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var dataObj = JSON.parse(xmlhttp.responseText);
+                    var str = "";
+                    str += "<tr><td>" + dataObj['member1'] + "</td>";
+                    str += "<td>" + dataObj['score1'] + "</td>";
+                    str += "<td><input type=\"text\" class=\"form-control\" name=\"score1\" value=\"0\"></td></tr>";
+                    str += "<tr><td>" + dataObj['member2'] + "</td>";
+                    str += "<td>" + dataObj['score2'] + "</td>";
+                    str += "<td><input type=\"text\" class=\"form-control\" name=\"score2\" value=\"0\"></td></tr>";
+                    str += "<tr><td>" + dataObj['member3'] + "</td>";
+                    str += "<td>" + dataObj['score3'] + "</td>";
+                    str += "<td><input type=\"text\" class=\"form-control\" name=\"score3\" value=\"0\"></td></tr>";
+                    str += "<tr><td>" + dataObj['member4'] + "</td>";
+                    str += "<td>" + dataObj['score4'] + "</td>";
+                    str += "<td><input type=\"text\" class=\"form-control\" name=\"score4\" value=\"0\"></td></tr>";
+                    $("#myTable tbody").html(str);
+                }
+            };
+            xmlhttp.open("GET", "/record/show/" + game_id, true);
+            xmlhttp.send();
+        }
+    </script>
+{% endblock %}
