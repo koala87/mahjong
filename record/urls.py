@@ -21,8 +21,5 @@ urlpatterns = [
     url(r'^list', views.list_view),
     url(r'^record/(\d+)', views.record_view),
     url(r'^show/(\d+)', views.show_view),
-    url(r'^rule', views.rule_view),
-    url(r'^member', views.member_view),
-    url(r'^random', views.random_view),
-    url(r'^.*$', views.member_view),
+    url(r'^.*$', views.list_view),
 ]

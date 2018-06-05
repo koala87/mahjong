@@ -44,7 +44,7 @@ def record_view(request, game_id):
     logger.debug('enter record view')
     if request.method == 'POST':
         logger.debug('submit record post form')
-        logger.debug(game_id);
+        logger.debug(game_id)
         logger.debug(request.POST)
         record = Record(round=0,
                         score1=request.POST['score1'],
@@ -55,10 +55,10 @@ def record_view(request, game_id):
         record.save()
         logger.debug('save record success')
         game = Game.objects.get(id=game_id)
-        game.score1 += int(request.POST['score1']);
-        game.score2 += int(request.POST['score2']);
-        game.score3 += int(request.POST['score3']);
-        game.score4 += int(request.POST['score4']);
+        game.score1 += int(request.POST['score1'])
+        game.score2 += int(request.POST['score2'])
+        game.score3 += int(request.POST['score3'])
+        game.score4 += int(request.POST['score4'])
         logger.debug(game)
         game.save()
         logger.debug('save game success')
@@ -83,18 +83,3 @@ def show_view(request, gid):
         'score4': game.score1,
     }
     return HttpResponse(json.dumps(ret))
-
-
-def rule_view(request):
-    logger.debug('enter rule view')
-    return render(request, 'record/rule.html')
-
-
-def member_view(request):
-    logger.debug('enter member view')
-    return render(request, 'record/member.html')
-
-
-def random_view(request):
-    logger.debug('enter random view')
-    return render(request, 'record/random.html')

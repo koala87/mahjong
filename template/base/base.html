@@ -25,12 +25,11 @@
 </head>
 <body>
 {% include 'base/nav.html' %}
+<br>
+<br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-3 col-md-3 sidebar">
-            {% include 'base/sidebar.html' %}
-        </div>
-        <div class="col-xs-9 col-sm-offset-3 col-md-9 col-md-offset-2 main">
+        <div class="col-xs-12 col-md-12">
             <div class="container theme-showcase" role="main">
                 {% block content %} content {% endblock %}
             </div>
