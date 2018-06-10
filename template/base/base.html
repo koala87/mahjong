@@ -6,7 +6,7 @@
     <!-- Bootstrap -->
     <link href="/static/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
     <!-- Data tables -->
-    <link rel="stylesheet" type="text/css" href="/static/dist/css/dataTables.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <style type="text/css">
         table {
             table-layout: fixed;
@@ -31,6 +31,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-12">
             <div class="container theme-showcase" role="main">
+                {% csrf_token %}
                 {% block content %} content {% endblock %}
             </div>
         </div>
@@ -39,7 +40,7 @@
 {% include 'base/foot.html' %}
 <!--引入JavaScript-->
 <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" language="javascript" src="/static/dist/js/dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 {% block script %}{% endblock %}
 </body>

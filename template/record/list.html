@@ -29,17 +29,5 @@
 {% endblock %}
 
 {% block script %}
-    <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable({
-                'order' : [1,'desc'],
-                "aoColumnDefs": [{"bSortable": false, "aTargets": [6]}],
-                'bFilter': false,
-                'bLengthChange': false,
-                'bSort': true,
-                "sInfoEmpty": "No entries to show",
-                "pagingType": "simple_numbers"
-            });
-        });
-    </script>
+    <script src="/static/record/js/record.js"></script>
 {% endblock %}

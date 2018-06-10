@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 import logging
 import json
+from django.forms.models import model_to_dict
+
 
 from models import Game
 from models import Record
@@ -10,6 +12,29 @@ from form import CreateForm
 
 
 logger = logging.getLogger('django')
+
+
+def dt2str(dt):
+    return dt.strftime('%Y-%m-%d %H:%M:%S')
+
+
+def get_request_param(params):
+    s_echo = params['sEcho']
+    start = int(params['iDisplayStart'])
+    length = int(params['iDisplayLength'])
+    return s_echo, start, length
+
+
+def delete_game_view(request):
+    logger.debug("enter delete game view")
+    game_id = request.POST['game_id']
+    game = Game.objects.get(id=game_id)
+    game.delete()
+    ret = {
+        'code': 200,
+        'msg': 'delete success'
+    }
+    return HttpResponse(json.dumps(ret))
 
 
 def create_view(request):
@@ -38,6 +63,29 @@ def list_view(request):
     logger.debug('enter list view')
     games = Game.objects.all()
     return render(request, 'record/list.html', {'games': games})
+
+
+def list_json_view(request):
+    logger.debug('enter list json view')
+    logger.debug(request)
+    s_echo, start, length = get_request_param(request.GET)
+    games= []
+    logger.debug(start)
+    logger.debug(length)
+    games_query = Game.objects.all()[start:start+length]
+    logger.debug(len(games_query))
+    for i in games_query:
+        line = model_to_dict(i)
+        line['start_dt'] = dt2str(i.start_dt)
+        line['update_dt'] = dt2str(i.update_dt)
+        games.append(line)
+    ret = {
+        'data': games,
+        'sEcho': s_echo,
+        'iTotalRecords': Game.objects.count(),
+        'iTotalDisplayRecords': Game.objects.count(),
+    }
+    return HttpResponse(json.dumps(ret))
 
 
 def record_view(request, game_id):

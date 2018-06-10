@@ -18,7 +18,9 @@ from . import views
 
 urlpatterns = [
     url(r'^create', views.create_view),
+    url(r'^list_json', views.list_json_view),
     url(r'^list', views.list_view),
+    url(r'^delete_game', views.delete_game_view),
     url(r'^record/(\d+)', views.record_view),
     url(r'^show/(\d+)', views.show_view),
     url(r'^.*$', views.list_view),

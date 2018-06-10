@@ -1,32 +1,19 @@
 <div style="text-align:center">
-    <table class="table table-bordered" id="myTable">
+    <table class="table table-bordered" id="gameListTable">
         <thead>
+        <tr>
             <th>名称</th>
+            <th>圈数</th>
+            <th>Base</th>
             <th>时间</th>
             <th>玩家1</th>
             <th>玩家2</th>
             <th>玩家3</th>
             <th>玩家4</th>
             <th>操作</th>
+        </tr>
         </thead>
         <tbody>
-        {% for i in games %}
-            <tr>
-            <td><a href="/record/record/{{ i.id }}">{{ i.name }}</a></td>
-            <td>{{ i.start_dt }}</td>
-            <td><a href="#">{{ i.member1 }}</a> : {{ i.score1 }}</td>
-            <td><a href="#">{{ i.member2 }}</a> : {{ i.score2 }}</td>
-            <td><a href="#">{{ i.member3 }}</a> : {{ i.score3 }}</td>
-            <td><a href="#">{{ i.member4 }}</a> : {{ i.score4 }}</td>
-            <td>
-                <div class="row">
-                    <button type="button" class="btn btn-primary btn-sm">查看</button>
-                    <a href="/record/record/{{ i.id }}" class="btn btn-success btn-sm">记分</a>
-                    <button type="button" class="btn btn-danger btn-sm">删除</button>
-                </div>
-            </td>
-            </tr>
-        {% endfor %}
         </tbody>
     </table>
 </div>
